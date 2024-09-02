@@ -17,17 +17,40 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Gideon+Roman&family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap" rel="stylesheet"/> 
-      <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Gideon+Roman&family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap" rel="stylesheet"/>
-      <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap" rel="stylesheet"></link>
-      <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap" rel="stylesheet"></link>
-      <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap" rel="stylesheet"></link>
-      <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Noto+Sans+Arabic:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap" rel="stylesheet"></link>
-      <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Noto+Sans+Arabic:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Rubik+Broken+Fax&family=Rubik+Distressed&family=Teko:wght@300..700&display=swap" rel="stylesheet"></link>
-      <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet"></link>
-      <link href="https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap" rel="stylesheet"></link>
-      <body className={inter.className}>{children}</body>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Gideon+Roman&family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Noto+Sans+Arabic:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Rubik+Broken+Fax&family=Teko:wght@300..700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Gideon+Roman&family=Matemasie&family=New+Amsterdam&family=Noto+Sans+Arabic:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Rubik+Broken+Fax&family=Rubik+Distressed&family=Teko:wght@300..700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Modak&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap"
+          rel="stylesheet"
+        />
       </head>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
