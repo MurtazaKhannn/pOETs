@@ -1,0 +1,44 @@
+/* Hide the default cursor */
+body, html {
+    cursor: none; /* This hides the default cursor */
+  }
+  
+  /* Base styles for custom cursor */
+  .custom-cursor {
+    position: fixed;
+    width: 15px; /* Small size */
+    height: 15px; /* Small size */
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0); /* Black core */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0), /* Neon green glow */
+                0 0 10px rgba(0, 0, 0, 0); /* Neon blue glow */
+    pointer-events: none; /* Prevent the cursor from interacting with elements */
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 9999; /* Ensure it is on top of other elements */
+    animation: pulse 1.5s infinite; /* Pulsing animation */
+  }
+  
+  /* Larger cursor for interactions */
+  .custom-cursor.large {
+    width: 20px; /* Slightly larger when interacting */
+    height: 20px; /* Slightly larger when interacting */
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.388), /* Neon green glow */
+                  0 0 10px #00000070; /* Neon blue glow */
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.381), /* Neon green glow */
+                  0 0 20px rgba(0, 0, 0, 0.225); /* Neon blue glow */
+      transform: scale(1.2);
+    }
+    100% {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.285), /* Neon green glow */
+                  0 0 10px rgba(0, 0, 0, 0.355); /* Neon blue glow */
+      transform: scale(1);
+    }
+  }
+  
