@@ -483,7 +483,7 @@ const Page = () => {
                 <br />
                 Each key pressed, a story begins, <br /> Letters dance, where
                 silence ends. <br /> In the rhythm of clacks, thoughts entwine,
-                <br />A typewriter’s voice, in each word's line.
+                <br />A typewriter's voice, in each word's line.
               </h1>
             </div>
           </div>
@@ -497,7 +497,7 @@ const Page = () => {
                 </p>{" "}
                 <br />
                 Under fingers, keys softly click,
-                <br /> Words flow smooth, the rhythm’s quick.
+                <br /> Words flow smooth, the rhythm's quick.
                 <br /> Ink and paper, old friends true,
                 <br />
                 Crafting stories, old and new.
