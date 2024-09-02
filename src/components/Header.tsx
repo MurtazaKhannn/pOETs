@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { NextRequest } from "next/server";
 import { FaUser } from "react-icons/fa6";
 
-const header = () => {
+const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
   const [id, setId] = useState(null);
   const [username, setUsername] = useState<string>("");
@@ -196,4 +196,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;
