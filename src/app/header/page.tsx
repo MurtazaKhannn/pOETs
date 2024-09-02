@@ -41,7 +41,7 @@ import {
 import CursorAnimation from "@/components/Cursor";
 import { FaLinkedin } from "react-icons/fa6";
 
-const header = () => {
+const Header = () => {
   // const elementRef = useRef(null);
 
   // const handleRef = () => {
@@ -681,4 +681,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;
