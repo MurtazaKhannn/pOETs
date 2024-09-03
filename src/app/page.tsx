@@ -15,7 +15,7 @@ import gsap from "gsap";
 import { FaInstagram, FaTwitter } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
-const header = () => {
+const Page = () => {
   // const elementRef = useRef(null);
 
   // const handleRef = () => {
@@ -147,4 +147,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Page;
