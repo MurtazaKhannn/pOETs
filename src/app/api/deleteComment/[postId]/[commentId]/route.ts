@@ -8,6 +8,9 @@ export async function DELETE(
   { params }: { params: { postId: string; commentId: string } }
 ) {
   try {
+    interface JwtPayloadWithId extends jwt.JwtPayload {
+      id: string;
+    }   
     await connect();
 
     const { postId, commentId } = params;
@@ -21,7 +24,7 @@ export async function DELETE(
     }
 
     const secretKey = process.env.JWT_SECRET_KEY!;
-    const decoded = jwt.verify(token, secretKey);
+    const decoded = jwt.verify(token, secretKey) as JwtPayloadWithId;
     const userId = decoded?.id;
 
     const post = await Post.findById(postId);
