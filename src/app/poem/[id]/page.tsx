@@ -29,6 +29,7 @@ const Page = () => {
       text: string;
       authorUsername?: string;
       createdAt: string;
+      _id: string;
     }>;
   };
 
@@ -283,7 +284,7 @@ const Page = () => {
           (prevPoem) =>
             prevPoem && {
               ...prevPoem,
-              likes: [...prevPoem?.likes, user?._id],
+              likes: [...prevPoem?.likes, user?._id || ""],
             }
         );
       } else if (result.message.includes("Unliked")) {

@@ -6,9 +6,9 @@ import CursorAnimation from "@/components/Cursor";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-  const [latestPoems, setLatestPoems] = useState([]);
-  const [id, setId] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [latestPoems, setLatestPoems] = useState<any[]>([]);
+  const [id, setId] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {

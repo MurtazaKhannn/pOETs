@@ -16,6 +16,7 @@ const Page = () => {
     followers: string[]; // Array of user IDs
     following: string[]; // Array of user IDs
     isVerified: boolean;
+    about : string; 
   };
 
   const router = useRouter();
