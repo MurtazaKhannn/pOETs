@@ -8,6 +8,9 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
+    interface JwtPayloadWithId extends jwt.JwtPayload {
+      id: string;
+    }    
     await connect();
 
     const { text } = await req.json();
@@ -35,7 +38,7 @@ export async function POST(
 
     let decoded;
     try {
-      decoded = jwt.verify(token, secretKey);
+      decoded = jwt.verify(token, secretKey) as JwtPayloadWithId;
     } catch (error) {
       return NextResponse.json(
         { message: "Unauthorized: Invalid token" },
