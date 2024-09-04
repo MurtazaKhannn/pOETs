@@ -448,7 +448,7 @@ const Page = () => {
           <div className="flex gap-10 font-Amsterdam">
             <div
               onClick={likeUnlike}
-              className="flex items-center justify-center"
+              className="flex items-center justify-center cursor-pointer"
             >
               <div className="p-2">
                 <FaHeart />
@@ -456,11 +456,11 @@ const Page = () => {
 
               <p>{poem?.likes?.length}</p>
             </div>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-2 cursor-pointer">
               <PiChatTeardropTextBold size={20} />
               <p>{poem?.comments?.length || 0}</p>
             </div>
-            <div onClick={handleShare} className="flex items-center justify-center gap-2">
+            <div onClick={handleShare} className="flex items-center justify-center gap-2 cursor-pointer">
               <FaShare />
             </div>
           </div>
