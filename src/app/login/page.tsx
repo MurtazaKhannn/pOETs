@@ -69,7 +69,7 @@ const Page = () => {
     <div className="w-full h-screen font-Amsterdam">
       <CursorAnimation />
       <div className="flex items-center justify-center font-teko text-5xl font-bold">
-        b<p className="text-yellow-600 mt-[6px] font-bold">LOG</p>{" "}
+        p<p className="text-yellow-600 mt-[6px] font-bold">OET</p>{" "}
         <p className="mt-3 lowercase">s</p>
       </div>
 

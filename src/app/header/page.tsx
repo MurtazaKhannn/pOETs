@@ -194,7 +194,7 @@ const Page = () => {
           start: "top 50%",
           end: "top 20%",
           scrub: 1,
-          markers: true, // Enable markers to debug
+          // markers: true, // Enable markers to debug
         },
       }
     );
@@ -212,7 +212,7 @@ const Page = () => {
           start: "top 50%",
           end: "top 20%",
           scrub: 1,
-          markers: true, // Enable markers to debug
+          // markers: true, // Enable markers to debug
         },
       }
     );
@@ -231,7 +231,7 @@ const Page = () => {
           start: "top 50%",
           end: "top 20%",
           scrub: 1,
-          markers: true, // Enable markers to debug
+          // markers: true, // Enable markers to debug
         },
       }
     );
@@ -249,7 +249,7 @@ const Page = () => {
           start: "top 80%",
           end: "top 40%",
           scrub: 1,
-          markers: true, // Enable markers to debug
+          // markers: true, // Enable markers to debug
         },
       }
     );
@@ -267,7 +267,7 @@ const Page = () => {
           start: "top 50%",
           end: "top 40%",
           scrub: 3,
-          markers: true, // Enable markers to debug
+          // markers: true, // Enable markers to debug
         },
       }
     );
@@ -285,7 +285,7 @@ const Page = () => {
           start: "top 70%",
           end: "top 50%",
           scrub: 3,
-          markers: true, // Enable markers to debug
+          // markers: true, // Enable markers to debug
         },
       }
     );
@@ -303,7 +303,7 @@ const Page = () => {
           start: "top 70%",
           end: "top 68%",
           scrub: 3,
-          markers: true, // Enable markers to debug
+          // markers: true, // Enable markers to debug
         },
       }
     );
@@ -321,7 +321,7 @@ const Page = () => {
           start: "top 70%",
           end: "top 65%",
           scrub: 3,
-          markers: true, // Enable markers to debug
+          // markers: true, // Enable markers to debug
         },
       }
     );
@@ -339,7 +339,7 @@ const Page = () => {
           start: "top 75%",
           end: "top 68%",
           scrub: 3,
-          markers: true, // Enable markers to debug
+          // markers: true, // Enable markers to debug
         },
       }
     );
@@ -355,7 +355,7 @@ const Page = () => {
           start: "top 20%",
           end: "top 10%",
           scrub: 3,
-          markers: true,
+          // markers: true,
           // pin:true
         },
       }
@@ -369,7 +369,7 @@ const Page = () => {
         start: "top 10%",
         end: "top-90%",
         scrub: 2,
-        markers: true,
+        // markers: true,
         pin: true,
         pinSpacing: false, // Consider adding this if pinning causes layout issues
       },
@@ -394,7 +394,7 @@ const Page = () => {
           start: "top 10%",
           end: "top-90%",
           scrub: 2,
-          markers: true,
+          // markers: true,
           pin: true,
           pinSpacing: false, // Consider adding this if pinning causes layout issues
         },
@@ -539,7 +539,7 @@ const Page = () => {
           <div className="pl-2 pt-2" id="mugB">
             <h2>
               <p className="font-bold flex font-Amsterdam w-[7vw] ">
-                "Morning&nbsp;<p className="text-yellow-800">Brew</p>"
+                "Morning&nbsp;<span className="text-yellow-800">Brew</span>"
               </p>
               <br />
               <p className="mt-[-2.5vh]  w-[22vw] text-sm">
@@ -554,7 +554,7 @@ const Page = () => {
           <div className="pl-[8vw] mt-[20vw]" id="mugB">
             <h2>
               <p className="font-bold flex font-Amsterdam w-[7vw] ">
-                "Mug of&nbsp;<p className="text-red-700">Love</p>"
+                "Mug of&nbsp;<span className="text-red-700">Love</span>"
               </p>
               <br />
               <p className="mt-[-2.5vh]  w-[22vw] text-sm">
@@ -570,7 +570,7 @@ const Page = () => {
           <div className="pl-2 pt-2 absolute right-[-5vw]" id="mugM">
             <h2>
               <p className="font-bold font-Amsterdam w-[7vw] flex">
-                "Mug of&nbsp;<p className="text-blue-200">Memories</p>"
+                "Mug of&nbsp;<span className="text-blue-200">Memories</span>"
               </p>
               <br />
               <p className="mt-[-2.5vh]  w-[22vw] text-xs">

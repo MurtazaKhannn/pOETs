@@ -11,21 +11,22 @@ const Page = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
+  // Fetch user ID when the component mounts
   useEffect(() => {
-    const me = async () => {
+    const fetchUser = async () => {
       try {
         const res = await fetch(`/api/me`);
         const result = await res.json();
-        console.log(result.data._id);
         setId(result.data._id);
-      } catch (err : any) {
+      } catch (err) {
         console.error("Error fetching user:", err);
       }
     };
 
-    me();
+    fetchUser();
   }, []);
 
+  // Fetch latest poems when the user ID is available
   useEffect(() => {
     if (id) {
       const fetchLatestPoems = async () => {
@@ -34,9 +35,6 @@ const Page = () => {
           const result = await res.json();
 
           if (res.ok) {
-            console.log(result.feedPosts);
-            console.log("hello");
-            
             setLatestPoems(result.feedPosts);
           } else {
             console.error(
@@ -59,37 +57,37 @@ const Page = () => {
   }, [id]);
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center">
-      <div className="w-full absolute top-0">
-        <Header />
-      </div>
-      <CursorAnimation />
-      <div className="w-full  h-full flex flex-col mt-10 justify-center items-center p-10">
-        <h1 className="font-Amsterdam text-4xl text-[#434348]">Latest Poems</h1>
-        {loading ? (
-          <p className="w-full font-Amsterdam h-[80vh] text-4xl flex items-center justify-center">Loading...</p> 
-        ) : latestPoems.length > 0 ? (
-          latestPoems.map((poem) => (
-            <div
-              onClick={() => router.push(`/poem/${poem?._id}`)}
-              className="w-full h-full flex gap-10 mt-20 flex-col items-center justify-center text-center bg-zinc-100 p-10 rounded-md"
-              key={poem?._id}
-            >
-              <h1 className="font-teko text-4xl">{poem?.title}</h1>
-              <h3 className="font-teko text-2xl break-words w-[70vw]">
-                {poem?.content}
-              </h3>
-              
-              <p className="font-tint text-xs">
-                posted At : {poem?.createdAt.split("T")[0]}
-              </p>
-            </div>
-          ))
-        ) : (
-          <p className="w-full font-Amsterdam h-[80vh] text-4xl flex items-center justify-center">No poems found.</p> 
-        )}
-      </div>
-    </div>
+    <div className="relative w-full min-h-screen flex flex-col items-center justify-center">
+  <div className="w-full absolute top-0">
+    <Header />
+  </div>
+  <CursorAnimation />
+  <div className="w-full flex flex-col mt-10 justify-center items-center p-10">
+    <h1 className="font-Amsterdam text-4xl text-[#434348]">Latest Poems</h1>
+    {loading ? (
+      <p className="w-full flex items-center justify-center text-4xl">Loading...</p>
+    ) : latestPoems.length > 0 ? (
+      latestPoems.map((poem) => (
+        <div
+          onClick={() => router.push(`/poem/${poem?._id}`)}
+          className="w-full flex gap-10 mt-20 flex-col items-center justify-center text-center bg-zinc-100 p-10 rounded-md"
+          key={poem?._id}
+        >
+          <h1 className="font-teko text-4xl">{poem?.title}</h1>
+          <h3 className="font-teko text-2xl break-words w-[70vw]">
+            {poem?.content}
+          </h3>
+          <p className="font-tint text-xs">
+            Posted At: {new Date(poem?.createdAt).toLocaleDateString()}
+          </p>
+        </div>
+      ))
+    ) : (
+      <p className="w-full flex items-center justify-center text-4xl">No poems found.</p>
+    )}
+  </div>
+</div>
+
   );
 };
 

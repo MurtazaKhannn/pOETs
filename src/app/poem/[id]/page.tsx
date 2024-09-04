@@ -358,7 +358,7 @@ const Page = () => {
   
 
   return (
-    <div className="relative w-full h-full flex flex-col ">
+    <div className="relative w-full h-full flex flex-col">
       <CursorAnimation />
       <Header />
       {user?._id === poem?.author && (
@@ -437,7 +437,7 @@ const Page = () => {
       >
         <Image className="leafm" src={leafm} alt="" width={100} />
       </motion.div>
-      <div className="zoom w-full min-h-[92.2vh] gap-10 flex flex-col items-center justify-center ">
+      <div className="zoom w-full min-h-[92.2vh] gap-10 flex flex-col items-center justify-center mt-8">
         <h1 className="font-teko text-4xl font-semibold title">
           {poem?.title || "Loading..."}
         </h1>
