@@ -8,8 +8,24 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { NextRequest } from "next/server";
 import { FaUser } from "react-icons/fa6";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input"
+import { Separator } from "@/components/ui/separator"
+import { ScrollArea } from "@/components/ui/scroll-area"
+
+
+
 
 const Header = () => {
+  const { setTheme } = useTheme();
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
   const [id, setId] = useState(null);
   const [username, setUsername] = useState<string>("");
@@ -20,13 +36,12 @@ const Header = () => {
   const handleInputChange = (e: any) => {
     const value = e.target.value;
     setUsername(value);
-    if (value) {
+    if(value) {
       searchUsers(value); // Automatically search users as you type
     } else {
       setUsers([]); // Clear users list if input is empty
     }
   };
-
 
   const router = useRouter();
 
@@ -119,40 +134,40 @@ const Header = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center gap-2">
-          <div className="flex gap-2">
-            <input
-              className="bg-zinc-900 font-teko text-xl rounded-md p-1 mt-1 w-[20vw] text-white"
-              placeholder="Search"
-              value={username}
-              onChange={handleInputChange}
-              type="text"
-            />
-          </div>
-          <div className="bg-black flex flex-col text-white z-30 absolute w-[20.1vw] rounded-md top-10">
+          <div className="flex flex-col gap-2">
+          <Input type="text" value={username} onChange={handleInputChange} placeholder="Username" />
+          <div className=" flex flex-col w-[14.5vw] z-30 absolute rounded-md top-10">
             {users.map((user) => {
               return (
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   key={user._id}
-                  className="p-2 text-sm font-semibold text-gray-700 hover:text-gray-900 text-white"
+                  className="mt-4 text-sm font-semibold  w-full"
                 >
-                  <div className="text-zinc-300 hover:text-white" onClick={() => {router.push(`/profile/${user._id}`)}}>
+                  <Button variant="outline"
+                    className=" w-full"
+                    onClick={() => {
+                      router.push(`/profile/${user._id}`);
+                    }}
+                  >
                     {user.username}
-                  </div>
+                  </Button>
                 </motion.div>
               );
             })}
           </div>
+          </div>
+          
         </div>
 
         <div className="flex gap-5 text-md font-Amsterdam">
-          <p className="">Home</p>
+          <Button variant="ghost">Home</Button>
           <p
             onClick={() => {
               router.push(`/latestPoems/${id}`);
             }}
           >
-            Latest Poems
+            <Button variant="ghost">Latest Poems</Button>
           </p>
           <motion.p
             onClick={() => {
@@ -161,22 +176,45 @@ const Header = () => {
             whileHover={{ scale: 1.2, rotate: 3600 }}
             className="text-green-700 font-bold cursor-pointer"
           >
-            {isLoggedIn ? "Post" : ""}
+            <Button variant="ghost">{isLoggedIn ? "Post" : ""}</Button>
           </motion.p>
-          <p>About us</p>
+          <Button variant="ghost">About Us</Button>
           <p onClick={handleLogIn} className="cursor-pointer">
-            {isLoggedIn ? "Enjoy" : "LogIn/SignUp"}
+            <Button variant="ghost">{isLoggedIn ? "Enjoy" : "LogIn/SignUp"}</Button>
           </p>
         </div>
 
         <div className="flex items-center justify-center gap-10">
-          <div
+          <Button variant="ghost"
             onClick={() => {
               router.push(`/profile/${id}`);
             }}
-            className="hover:text-green-800"
+            className=""
           >
             <FaUser />
+          </Button>
+
+          <div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           <motion.div
@@ -186,9 +224,9 @@ const Header = () => {
               x: [0, -8, 8, -8, 8, 0],
               y: [0, -2, 2, -2, 2, 0],
             }}
-            className="cursor-pointer"
+            className="cursor-pointer text-black"
           >
-            {isLoggedIn ? <CiLogout size={30} /> : ""}
+            <Button variant="outline">{isLoggedIn ? <CiLogout size={20} /> : ""}</Button>
           </motion.div>
         </div>
       </div>
