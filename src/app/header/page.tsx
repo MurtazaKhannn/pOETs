@@ -40,15 +40,22 @@ import {
 } from "react-icons/fa";
 import CursorAnimation from "@/components/Cursor";
 import { FaLinkedin } from "react-icons/fa6";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import PictureH from "@/Assets/PicturesH"
 
 const Page = () => {
-
   const [user, setUser] = useState<any>("");
   const [poem, setPoem] = useState<any>("");
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
 
     const getUserDetails = async () => {
       const res = await fetch("/api/me");
@@ -65,10 +72,27 @@ const Page = () => {
       <Header />
       <CursorAnimation />
       <div className="w-full overflow-x-hidden min-h-full lg:flex lg:flex-col mt-5 ">
-        <div id="page1" className="w-full relative flex h-[90vh]">
-
+        <div id="page1" className="w-full relative flex h-[89.4vh] items-center justify-center">
+          <div>
+            <Carousel className="w-full max-w-xs">
+              <CarouselContent>
+                {PictureH.map((pic , index) => (
+                  <CarouselItem key={index}>
+                    <div className="p-1">
+                      <Card>
+                        <CardContent className="flex aspect-square items-center justify-center p-6">
+                          <Image src={pic?.image} alt="Home iMAGE" className="text-4xl font-semibold object-cover rounded-md"/>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
         </div>
-          
       </div>
     </>
   );
