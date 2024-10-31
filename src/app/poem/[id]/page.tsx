@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
-import { FaComment, FaHeart, FaShare } from "react-icons/fa";
+import { FaHeart, FaShare } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";

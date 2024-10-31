@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "@/Public/cursor.css"; // Ensure your CSS is imported here
 
 const CursorAnimation = () => {

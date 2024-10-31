@@ -1,12 +1,9 @@
 "use client";
 
 import React, { createContext, useEffect, useState } from "react";
-import Image from "next/image";
-import logo from "@/Assets/blog_pic_4.png";
 import { CiLogout } from "react-icons/ci";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { NextRequest } from "next/server";
 import { FaUser } from "react-icons/fa6";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -18,8 +15,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import CursorAnimation from "./Cursor";
 
 const Header = () => {

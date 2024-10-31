@@ -19,7 +19,7 @@ import { motion } from "framer-motion";
 
 const Page = () => {
   const [user, setUser] = useState<any>("");
-  const [poem, setPoem] = useState<any>("");
+  // const [poem, setPoem] = useState<any>("");
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);

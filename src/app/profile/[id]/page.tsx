@@ -7,7 +7,6 @@ import Image from "next/image";
 import profilePic from "@/Assets/kareya.jpg";
 import { TiTickOutline } from "react-icons/ti";
 import { useRouter } from "next/navigation";
-import { Progress } from "@/components/ui/progress"
 
 
 const Page = () => {
