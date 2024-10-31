@@ -130,7 +130,7 @@ const Header = () => {
               value={username}
               onChange={handleInputChange}
               placeholder="Enter Username"
-              className="w-full md:w-[250px] border-zinc-100 border-[.01rem] mx-4 lg:w-[300px]" // Responsive width
+              className="w-full md:w-[250px] mx-4 lg:w-[300px]" // Responsive width
             />
             <div className="flex flex-col z-30 absolute rounded-md top-10 w-full md:w-[250px] lg:w-[300px]">
               {users.map((user) => {

@@ -98,7 +98,7 @@ const Page = () => {
             line,
             { color: "#f0f0f0", scale: 0.6 , x :120 },
             {
-              color: "#000000",
+              color: "#493B2A",
               scale: 1,
               x:0,
               scrollTrigger: {
@@ -293,7 +293,7 @@ const Page = () => {
         <h1 className="font-teko text-4xl font-semibold title">
           {poem?.title || "Loading..."}
         </h1>
-        <div className="czoom font-teko text-2xl w-[70vw] break-words text-center mt-10">
+        <div className="text-white font-teko text-2xl w-[70vw] break-words text-center mt-10">
           {poem ? getLines(poem.content) : "Please wait..."}
         </div>
         <div className="w-[50vw] rounded-md flex flex-col items-center justify-center p-10 gap-4">
