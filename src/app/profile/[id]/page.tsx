@@ -7,6 +7,8 @@ import Image from "next/image";
 import profilePic from "@/Assets/kareya.jpg";
 import { TiTickOutline } from "react-icons/ti";
 import { useRouter } from "next/navigation";
+import { Progress } from "@/components/ui/progress"
+
 
 const Page = () => {
   type User = {
@@ -16,7 +18,7 @@ const Page = () => {
     followers: string[]; // Array of user IDs
     following: string[]; // Array of user IDs
     isVerified: boolean;
-    about : string; 
+    about: string;
   };
 
   const router = useRouter();
@@ -24,11 +26,14 @@ const Page = () => {
   const [latestPoems, setLatestPoems] = useState<any[]>([]);
   const [uid, setUid] = useState<string | null>(null);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  // const [loading , setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   const id = window.location.pathname.split("/").pop(); // Extract ID from the URL path
 
   // Handle Follow/Unfollow action
   const handleFollowUnfollow = async () => {
+
     if (!user || !id) return;
 
     try {
@@ -62,8 +67,11 @@ const Page = () => {
   };
 
   useEffect(() => {
+    // setLoading(true);
+    setProgress(25);
     const fetchUser = async () => {
       try {
+        setProgress(50);
         const res = await fetch(`/api/user/${id}`);
         const result = await res.json();
 
@@ -71,12 +79,16 @@ const Page = () => {
           setUser(result.user);
           setUid(result.user._id);
           // console.log("uid" , uid);
-          
+
           setIsFollowing(result.user.followers.includes(uid)); // Check if current user is following
         }
+
+        setProgress(75);
       } catch (error) {
         console.error("Error fetching user:", error);
         setUser(null);
+      } finally {
+        setProgress(100);
       }
     };
 
@@ -100,6 +112,20 @@ const Page = () => {
     fetchLatestPoems();
     fetchUser();
   }, [id, uid]);
+
+  if (progress < 100) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <div className="w-2/3 h-4 bg-gray-200 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-zinc-900 rounded-full transition-all duration-300"
+            style={{ width: `${progress}%` }} // Fills based on progress state
+          ></div>
+        </div>
+      </div>
+    )
+  }
+
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -130,7 +156,7 @@ const Page = () => {
                 {uid && uid === id && (
                   <button
                     onClick={handleFollowUnfollow}
-                    className="font-teko font-semibold text-md bg-zinc-300 rounded-md text-sm py-1 px-2"
+                    className="font-teko font-semibold text-sm bg-zinc-300 rounded-[1rem] text-sm py-1 px-2"
                   >
                     {isFollowing ? "Unfollow" : "Follow"}
                   </button>
@@ -138,7 +164,7 @@ const Page = () => {
               </div>
               <h3 className="font-Amsterdam">{user?.about}</h3>
             </div>
-            <div className="font-Amsterdam text-xl flex gap-10">
+            <div className="font-Amsterdam text-xl flex flex-col sm:flex-row gap-10">
               <div className="flex flex-col items-center justify-center">
                 <div>{latestPoems.length}</div>
                 posts
@@ -158,22 +184,27 @@ const Page = () => {
           <hr className="w-[80vw] h-[0.2vh] rounded-md bg-black" />
         </div>
         <div className="w-full h-auto flex flex-col items-center gap-10">
-          <div className="mt-5 font-tint text-5xl">Poems/Shayris</div>
+          <div className="mt-5 font-tint text-3xl sm:text-5xl">Poems/Shayris</div>
           <div className="w-[70vw] h-auto mt-10 flex flex-col gap-[20vh]">
             {latestPoems.map((poem) => (
-              <div
-                onClick={() => router.push(`/poem/${poem._id}`)}
-                className="w-full flex flex-col gap-4 items-center justify-center mb-5 bg-zinc-100 p-10 rounded-md"
-                key={poem._id}
-              >
-                <h1 className="font-teko text-4xl text-center">{poem.title}</h1>
-                <h3 className="font-teko text-2xl max-w-full break-words text-center">
-                  {poem.content}
-                </h3>
-                <p className="font-tint text-xs text-center">
-                  posted At : {new Date(poem.createdAt).toLocaleDateString()}
-                </p>
-              </div>
+              <>
+                <div
+                  onClick={() => router.push(`/poem/${poem._id}`)}
+                  className="w-full flex flex-col gap-4 items-center justify-center mb-5 p-10 rounded-md"
+                  key={poem._id}
+                >
+                  <h1 className="font-teko text-4xl text-center">{poem.title}</h1>
+                  <h3 className="font-teko text-2xl max-w-full break-words text-center">
+                    {poem.content}
+                  </h3>
+                  <p className="font-tint text-xs text-center">
+                    posted At : {new Date(poem.createdAt).toLocaleDateString()}
+                  </p>
+
+                </div>
+                <hr className="border-b-2 border-black" />
+              </>
+
             ))}
           </div>
         </div>

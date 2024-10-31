@@ -76,7 +76,7 @@ const Page = () => {
       </div>
       <CursorAnimation />
       <div className="w-full flex flex-col mt-10 justify-center items-center p-10">
-        <h1 className="font-Amsterdam text-4xl absolute top-20 text-[#434348]">
+        <h1 className="font-Amsterdam md:flex hidden text-4xl absolute top-20 text-[#434348]">
           Latest Poems
         </h1>
         {loading ? (
@@ -89,20 +89,19 @@ const Page = () => {
               align: "start",
             }}
             orientation="vertical"
-            className="w-full max-w-2xl"
+            className="w-full flex items-center justify-center"
           >
-            <CarouselContent className="-mt-1 pr-1 h-[210px]">
+            <CarouselContent className="-mt-1 pr-1 flex items-center  w-[70vw] h-[210px]">
               {latestPoems.map((poem, index) => (
-                <CarouselItem key={index} className="pt-1 md:basis-1/2">
-                  <div className="p-1 relative ">
-                  <div className=" w-[41.8vw] h-[13vh] rounded-md absolute z-10 left-10 top-2 bg-black">
-                  </div>
+                <CarouselItem key={index} className="pt-1 flex items-center md:basis-1/2">
+                  <div className="p-1 relative">
+                  
 
-                    <Card className="absolute w-full z-20">
-                      <CardContent className="flex items-center justify-center p-6 z-20">
+                    <Card className="flex items-center justify-center w-[70vw] z-20">
+                      <CardContent className="flex items-center justify-center p-6">
                         <span
                           onClick={() => router.push(`/poem/${poem?._id}`)}
-                          className="text-3xl font-semibold z-20"
+                          className="text-3xl font-semibold font-teko z-20"
                         >
                           {poem?.title}
                         </span>
@@ -120,21 +119,6 @@ const Page = () => {
             <CarouselNext />
           </Carousel>
         ) : (
-          // latestPoems.map((poem) => (
-          //   <div
-          // onClick={() => router.push(`/poem/${poem?._id}`)}
-          //     className="w-full flex gap-10 mt-20 flex-col items-center justify-center text-center bg-zinc-100 p-10 rounded-md"
-          //     key={poem?._id}
-          //   >
-          //     <h1 className="font-teko text-4xl">{poem?.title}</h1>
-          //     <h3 className="font-teko text-2xl break-words w-[70vw]">
-          //       {poem?.content}
-          //     </h3>
-          //     <p className="font-tint text-xs">
-          //       Posted At: {new Date(poem?.createdAt).toLocaleDateString()}
-          //     </p>
-          //   </div>
-          // ))
           <p className="w-full flex items-center justify-center text-4xl">
             No poems found.
           </p>

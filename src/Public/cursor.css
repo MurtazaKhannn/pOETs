@@ -9,9 +9,9 @@ body, html {
     width: 15px; /* Small size */
     height: 15px; /* Small size */
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0); /* Black core */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0), /* Neon green glow */
-                0 0 10px rgba(0, 0, 0, 0); /* Neon blue glow */
+    background: rgba(237, 239, 229, 0.844); /* Black core */
+    box-shadow: 0 0 10px rgba(221, 4, 4, 0), /* Neon green glow */
+                0 0 10px rgba(223, 16, 16, 0.166); /* Neon blue glow */
     pointer-events: none; /* Prevent the cursor from interacting with elements */
     transition: transform 0.3s ease, background 0.3s ease;
     z-index: 9999; /* Ensure it is on top of other elements */

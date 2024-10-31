@@ -78,7 +78,7 @@ const Page = () => {
         <form className="flex flex-col items-center gap-5" onSubmit={handleLogin}>
           <div className="flex flex-col gap-5 mt-10 ">
             <input
-              className="bg-zinc-100 text-2xl rounded-md p-1 font-teko font-semibold"
+              className="text-2xl rounded-md p-1 font-teko font-semibold"
               type="text"
               placeholder="Username"
               name="username"
@@ -86,7 +86,7 @@ const Page = () => {
               onChange={handleChange}
             />
             <input
-              className="bg-zinc-100 rounded-md p-1 font-teko text-2xl font-semibold"
+              className="rounded-md p-1 font-teko text-2xl font-semibold"
               type="password"
               placeholder="Password"
               name="password"
@@ -107,7 +107,7 @@ const Page = () => {
             </div>
 
             <button
-              className="bg-zinc-100 w-60 flex items-center justify-center rounded-md py-1 hover:bg-zinc-200 text-lg font-semibold"
+              className="w-60 flex items-center justify-center rounded-md py-1 text-lg font-semibold"
               type="submit"
             >
               Login

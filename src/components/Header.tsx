@@ -17,12 +17,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
-import { ScrollArea } from "@/components/ui/scroll-area"
-
-
-
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import CursorAnimation from "./Cursor";
 
 const Header = () => {
   const { setTheme } = useTheme();
@@ -31,12 +29,10 @@ const Header = () => {
   const [username, setUsername] = useState<string>("");
   const [users, setUsers] = useState<any[]>([]);
 
-  // const id = window.location.pathname.split("/").pop(); // Extract ID from the URL path
-
   const handleInputChange = (e: any) => {
     const value = e.target.value;
     setUsername(value);
-    if(value) {
+    if (value) {
       searchUsers(value); // Automatically search users as you type
     } else {
       setUsers([]); // Clear users list if input is empty
@@ -58,7 +54,6 @@ const Header = () => {
       try {
         const res = await fetch(`/api/me`);
         const result = await res.json();
-        console.log(result.data._id);
         setId(result.data._id);
       } catch (err) {
         console.error("Error fetching user:", err);
@@ -106,15 +101,12 @@ const Header = () => {
   const searchUsers = async (username: string) => {
     try {
       const response = await fetch(`/api/search/${username}`);
-
       if (!response.ok) {
         throw new Error("Failed to fetch users");
       }
 
       const users = await response.json();
       setUsers(users);
-      console.log(users);
-      // Process the users data as needed
     } catch (error) {
       console.error("Error searching users:", error);
     }
@@ -122,53 +114,65 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between px-10 py-2">
+    <CursorAnimation />
+      <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-10 py-2">
         <div
           onClick={() => {
             router.push("/header");
           }}
-          className="flex font-bold font-Amsterdam text-xl"
+          className="flex font-bold font-Amsterdam text-xl cursor-pointer mb-2 md:mb-0"
         >
           p<p className="text-red-700 mt-[6px] font-bold font-Amsterdam">OET</p>{" "}
           <p className="mt-3">s</p>
         </div>
 
-        <div className="flex flex-col items-center justify-center gap-2">
-          <div className="flex flex-col gap-2">
-          <Input type="text" value={username} onChange={handleInputChange} placeholder="Username" />
-          <div className=" flex flex-col w-[14.5vw] z-30 absolute rounded-md top-10">
-            {users.map((user) => {
-              return (
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  key={user._id}
-                  className="mt-4 text-sm font-semibold  w-full"
-                >
-                  <Button variant="outline"
-                    className=" w-full"
-                    onClick={() => {
-                      router.push(`/profile/${user._id}`);
-                    }}
+        
+
+        <div className="flex flex-col items-center justify-center gap-2 w-full md:w-auto">
+          <div className="flex font-bold flex-col gap-2">
+            <Input
+              type="text"
+              value={username}
+              onChange={handleInputChange}
+              placeholder="Enter Username"
+              className="w-full md:w-[250px] border-zinc-100 border-[.01rem] mx-4 lg:w-[300px]" // Responsive width
+            />
+            <div className="flex flex-col z-30 absolute rounded-md top-10 w-full md:w-[250px] lg:w-[300px]">
+              {users.map((user) => {
+                return (
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    key={user._id}
+                    className="mt-2 text-sm font-semibold w-full"
                   >
-                    {user.username}
-                  </Button>
-                </motion.div>
-              );
-            })}
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => {
+                        router.push(`/profile/${user._id}`);
+                      }}
+                    >
+                      {user.username}
+                    </Button>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-          </div>
-          
         </div>
 
-        <div className="flex gap-5 text-md font-Amsterdam">
-          <Button variant="ghost">Home</Button>
-          <p
+        <div className="flex flex-wrap gap-2 text-md font-Amsterdam mb-2 md:mb-0">
+          {isLoggedIn ? <p
             onClick={() => {
               router.push(`/latestPoems/${id}`);
             }}
           >
-            <Button variant="ghost">Latest Poems</Button>
-          </p>
+            <Button variant="ghost" className="whitespace-nowrap">
+              Latest Poems
+            </Button>
+          </p> : ""}
+          
+
           <motion.p
             onClick={() => {
               router.push("/post");
@@ -178,21 +182,25 @@ const Header = () => {
           >
             <Button variant="ghost">{isLoggedIn ? "Post" : ""}</Button>
           </motion.p>
-          <Button variant="ghost">About Us</Button>
+
           <p onClick={handleLogIn} className="cursor-pointer">
-            <Button variant="ghost">{isLoggedIn ? "Enjoy" : "LogIn/SignUp"}</Button>
+            <Button variant="ghost" className="whitespace-nowrap">
+              {isLoggedIn ? "Enjoy" : "LogIn/SignUp"}
+            </Button>
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-10">
-          <Button variant="ghost"
+        <div className="flex items-center justify-center gap-4">
+
+          { isLoggedIn ? <Button
+            variant="ghost"
             onClick={() => {
               router.push(`/profile/${id}`);
             }}
-            className=""
           >
             <FaUser />
-          </Button>
+          </Button> : "" }
+          
 
           <div>
             <DropdownMenu>
@@ -217,17 +225,19 @@ const Header = () => {
             </DropdownMenu>
           </div>
 
-          <motion.div
+          {isLoggedIn ? <motion.div
             onClick={handleLogout}
             whileHover={{
               color: "red",
               x: [0, -8, 8, -8, 8, 0],
               y: [0, -2, 2, -2, 2, 0],
             }}
-            className="cursor-pointer text-black"
+            className="cursor-pointer"
           >
-            <Button variant="outline">{isLoggedIn ? <CiLogout size={20} /> : ""}</Button>
-          </motion.div>
+            <Button>{isLoggedIn ? <CiLogout size={20} /> : ""}</Button>
+          </motion.div> : "" }
+
+          
         </div>
       </div>
     </>

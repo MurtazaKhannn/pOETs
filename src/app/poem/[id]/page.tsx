@@ -7,14 +7,8 @@ import { MdDeleteOutline } from "react-icons/md";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import CursorAnimation from "@/components/Cursor";
-import { FaRegClock } from "react-icons/fa6";
 import { PiChatTeardropTextBold } from "react-icons/pi";
-import circle from "@/Assets/circle.webp";
-import leaf from "@/Assets/leaf.webp";
-import complex from "@/Assets/complex.webp"
-import Image from "next/image";
-import { motion, useAnimation } from "framer-motion";
-import leafm from "@/Assets/leaf main.webp"
+import { useRouter } from "next/navigation";
 gsap.registerPlugin(ScrollTrigger);
 
 const Page = () => {
@@ -43,8 +37,10 @@ const Page = () => {
   const [user, setUser] = useState<User | null>(null);
   const [poemUser, setPoemUser] = useState<User | null>(null);
   const [commentText, setCommentText] = useState("");
+  const [like , setLike] = useState(false);
 
   const id = window.location.pathname.split("/").pop();
+  const router = useRouter();
 
   useEffect(() => {
     const getPoem = async () => {
@@ -117,84 +113,6 @@ const Page = () => {
         });
       }
     };
-
-    gsap.fromTo(
-      ".czoom",
-      { scale: 1 },
-      {
-        scale: 1.1,
-        scrollTrigger: {
-          trigger: ".zoom",
-          start: "top 80%",
-          end: "top 50%",
-          // markers: true,
-          scrub: true,
-        },
-      }
-    );
-
-    gsap.fromTo(
-      ".circle",
-      { rotate: 0 , scale: 1 },
-      {
-        rotate: 360,
-        duration:3 ,
-        delay:4 ,
-        yoyo: true,
-        repeat: -1,
-        ease: "linear",
-        scale:1.7
-      }
-    );
-
-    gsap.fromTo(
-      ".leaf",
-      { rotate: 10 , scale: 1 },
-      {
-        duration:3 ,
-        delay:4 ,
-        rotate:-10 ,
-        yoyo: true,
-        repeat: -1,
-        ease: "linear",
-        scale:1.2
-      }
-    );
-
-    gsap.fromTo(
-      ".complex",
-      { rotate: 100 , x:10 , scale: 1 },
-      {
-        duration:3 ,
-        delay:4 ,
-        rotate:-10 ,
-        yoyo: true,
-        repeat: -1,
-        ease: "linear",
-        scale:1.2
-      }
-    );
-
-    
-    gsap.fromTo(
-      ".leafm",
-      { rotate: 10 , y:0 , scale: 1  , opacity:1},
-      {
-        duration:3 ,
-        rotateZ:30 ,
-        rotateX:80 ,
-        rotateY:130 ,
-        delay:4 ,
-        y:500 ,
-        rotate:-10 ,
-        yoyo: true,
-        // repeat: -1,
-        opacity:0 ,
-        ease: "linear",
-        scale:1.2
-      }
-    );
-    
 
     requestAnimationFrame(() => {
       animateLines();
@@ -287,6 +205,7 @@ const Page = () => {
               likes: [...prevPoem?.likes, user?._id || ""],
             }
         );
+        setLike(true)
       } else if (result.message.includes("Unliked")) {
         setPoem(
           (prevPoem) =>
@@ -295,6 +214,7 @@ const Page = () => {
               likes: prevPoem?.likes.filter((like) => like !== user?._id),
             }
         );
+        setLike(false);
       }
 
       console.log(result);
@@ -369,74 +289,6 @@ const Page = () => {
           <MdDeleteOutline size={30} />
         </div>
       )}
-      <motion.div
-        className="pcircle absolute top-[25vw] left-40 z-30"
-        drag
-        dragConstraints={{
-          top: 0,
-          left: 0,
-          right: window.innerWidth - 100,
-          bottom: window.innerHeight - 100,
-        }}
-        whileDrag={{ scale: 1.2 }}
-        dragElastic={1}
-        onDragStart={() => console.log("Drag started")}
-        onDragEnd={() => console.log("Drag ended")}
-      >
-        <Image className="circle" src={circle} alt="" width={100} />
-      </motion.div>
-
-      <motion.div
-        className="pleaf absolute top-[40vw] right-[20vw] z-30"
-        drag
-        dragConstraints={{
-          top: 0,
-          left: 0,
-          right: window.innerWidth - 100,
-          bottom: window.innerHeight - 100,
-        }}
-        whileDrag={{ scale: 1.2 }}
-        dragElastic={1}
-        onDragStart={() => console.log("Drag started")}
-        onDragEnd={() => console.log("Drag ended")}
-      >
-        <Image className="leaf" src={leaf} alt="" width={100} />
-      </motion.div>
-
-      <motion.div
-        className="pcomplex absolute top-[20vw] right-[15vw] z-30"
-        drag
-        dragConstraints={{
-          top: 0,
-          left: 0,
-          right: window.innerWidth - 100,
-          bottom: window.innerHeight - 100,
-        }}
-        whileDrag={{ scale: 1.2 }}
-        dragElastic={1}
-        onDragStart={() => console.log("Drag started")}
-        onDragEnd={() => console.log("Drag ended")}
-      >
-        <Image className="complex" src={complex} alt="" width={100} />
-      </motion.div>
-
-
-      <motion.div
-        className="pleaf absolute top-[5vw] left-[5vw] z-30"
-        drag
-        dragConstraints={{
-          top: 0,
-          left: 0,
-          right: window.innerWidth - 100,
-          bottom: window.innerHeight - 100,
-        }}
-        whileDrag={{ scale: 1.2 }}
-        dragElastic={1}
-        onDragStart={() => console.log("Drag started")}
-        onDragEnd={() => console.log("Drag ended")}
-      >
-        <Image className="leafm" src={leafm} alt="" width={100} />
-      </motion.div>
       <div className="zoom w-full min-h-[92.2vh] gap-10 flex flex-col items-center justify-center mt-8">
         <h1 className="font-teko text-4xl font-semibold title">
           {poem?.title || "Loading..."}
@@ -450,14 +302,14 @@ const Page = () => {
               onClick={likeUnlike}
               className="flex items-center justify-center cursor-pointer"
             >
-              <div className="p-2">
+              <div  className={`p-2 ${like ? "text-red-600" : ""}`}>
                 <FaHeart />
               </div>
 
               <p>{poem?.likes?.length}</p>
             </div>
             <div className="flex items-center justify-center gap-2 cursor-pointer">
-              <PiChatTeardropTextBold size={20} />
+              <PiChatTeardropTextBold onClick={() => {router.push("#comments")}} size={20} />
               <p>{poem?.comments?.length || 0}</p>
             </div>
             <div onClick={handleShare} className="flex items-center justify-center gap-2 cursor-pointer">
@@ -491,7 +343,7 @@ const Page = () => {
           </form>
         </div>
 
-        <div className="w-[98.9vw] min-h-[30vh] bg-zinc-900 rounded-md text-white flex flex-col items-start justify-start p-10 gap-4">
+        <div id="comments" className="w-[98.9vw] min-h-[30vh] bg-zinc-900 rounded-md text-white flex flex-col items-start justify-start p-10 gap-4">
           <h2 className="text-xl font-semibold font-Amsterdam">Comments</h2>
           {poem?.comments.map((comment, index) => (
             <div key={index} className="mb-4 font-teko text-2xl">

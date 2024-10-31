@@ -81,7 +81,7 @@ const Page = () => {
             T i t l e
           <input
             name='title'
-            className='bg-zinc-100 rounded-md p-4 outline-none w-[60vw]'
+            className='p-4 outline-none w-[60vw]'
             placeholder='title . . .'
             type='text'
             value={post.title}
@@ -93,8 +93,8 @@ const Page = () => {
             S T O R Y
             <textarea
             name='content'
-            className='bg-zinc-100 p-2 text-black outline-none w-[60vw]'
-            rows={20}
+            className='p-2 outline-none w-[60vw]'
+            rows={8}
             placeholder='Type your story . . . '
             value={post.content}
             onChange={handleChange}
@@ -104,11 +104,11 @@ const Page = () => {
           <input
             name='author'
             placeholder='author'
-            className='p-2 bg-zinc-100 rounded-md w-[60vw] outline-none font-semibold font-teko'
+            className='p-2 rounded-md w-[60vw] outline-none font-semibold font-teko'
             type='text'
             value={currUsername}
           />
-          <button onClick={postPoem} className='font-Amsterdam px-3 py-1 bg-zinc-100 w-[10vw]' type='submit'>
+          <button onClick={postPoem} className='font-Amsterdam px-3 py-1 w-[10vw]' type='submit'>
             Post
           </button>
         </form>
